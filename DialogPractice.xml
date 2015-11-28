@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+		    <!--Main folder-->
+		<folder label="Main">
+	        <output>
+                <prompt selectionType="RANDOM">
+                    <item>A goblin stands before you threateningly in a field.  A castle is nearby.  What do you do?</item>
+                </prompt>
+                <goto ref="getUserInput_2442994"/>
+            </output>
+		   <output>
+        	<prompt selectionType="SEQUENTIAL">
+                    <item>Attack or move?</item>
+                </prompt>
+		        <getUserInput id="getUserInput_2442994">
+					<search ref="folder_2442998"/>
+		            <default>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Try again.</item>
+                                <item>Greensly livid bartosh.  That's how I read your input.  Again?</item>
+                                <item>Keep it simple.  Just like me!</item>
+                                <item>I'm a stupid program.  Try again, more computer like please.</item>
+                            </prompt>
+                        </output>
+					</default>
+		        </getUserInput>
+            </output>
+		</folder>
+		<!--library folder section-->
+		<folder label="Library">
+            <folder label="Live Content" id="folder_2442998">
+       	<!--Move input section-->
+			<input>
+                    <grammar>
+                        <item>Move</item>
+                    </grammar>
+					<action varName="DisplayAction" operator="SET_TO">move</action>
+			<output>
+					<prompt selectionType="RANDOM">
+                            <item>You {DisplayAction} to the field.</item>
+                    </prompt>
+            </output>
+			</input>
+			<!--Attack input section-->
+		        <input>
+                    <grammar>
+                        <item>Attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You attack the goblin!</item>
+                    </prompt>
+            </output>
+			</input>
+		</folder>
+				</folder>
+	</flow>
+</dialog>	  
