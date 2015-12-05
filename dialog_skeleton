@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+		    <!--Main folder-->
+		<folder label="Main">
+	        <output id="new">
+                <prompt selectionType="RANDOM" >
+                    <item>A goblin stands before you threateningly in a glade.  A field is nearby. Type in move or attack for your action!</item>
+                </prompt>
+                <getUserInput>
+				<search ref="move_field"/>
+				<search ref="attack_goblin"/>				
+                    <default id="error">
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Try again.</item>
+                                <item>Greensly livid bartosh.  That's how I read your input.  Again?</item>
+                                <item>Keep it simple.  Just like me!</item>
+                                <item>I'm a stupid program.  Try again, more computer like please.</item>
+                            </prompt>
+                        </output>
+					</default>
+			    </getUserInput>
+			</output>
+		</folder>
+		<!--library folder section-->
+		<folder label="Library">
+            <folder label="Move Field" id="move_field">
+       	<!--Move input section-->
+			<input>
+                    <grammar>
+                        <item>Move</item>
+                    </grammar>
+					
+			<output>
+					<prompt selectionType="RANDOM">
+                            <item>You move to the field.  Suddenly you spy a dragon coming over the hill!  You spy a cave nearby.  What do you do?</item>
+							<item>Does this work?</item>							
+					</prompt>
+					<getUserInput>
+				<search ref="move_cave"/>
+                <search ref="attack_dragon"/>    
+					</getUserInput>					
+            </output>
+			</input>
+		</folder>
+		<folder label="Attack Goblin" id="attack_goblin">
+			<!--Attack input section-->
+		        <input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You attack the goblin!  Easily slain you walk into a cave nearby.  There is a rock monster nearby, but the cave also goes deeper.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_rockcreature"/>
+                <search ref="move_deepercave"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Rockcrature" id="attack_rockcreature">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You have a fierce battle with the rock creature.  Nimbly rolling underneath its slow smashing apendage, you notice a weak point inbetween the rocky joints.  You slash it and it tumbles with a low groan.  You leave the cave and spy a giant bee.  A castle is nearby.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_bee"/>
+                <search ref="move_castle"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Deeper Cave" id="move_deepercave">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You decide to run away from the rock creature deeper into the cave.  As you run with the creature stomping behind you, you realize you don't have a torch.  Knowing you can't fight the creature, you press on until you feet hit air, and several seconds later as your screams echo through the cavern, your body hits the ground.</item>
+                    </prompt>
+					<goto ref="new"/>
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Dragon" id="attack_dragon">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You attack the dragon!  It steps on you unceremoniously.  You're dead.  What did you expect?  Try again! </item>
+                    </prompt>
+				<goto ref="new"/>
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Cave" id="move_cave">
+			<!--Attack input section-->
+		        <input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You decide fighting a dragon is not a great idea.  You sneak into a cave nearby.  There is a rock monster nearby, but the cave also goes deeper.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_rockcreature"/>
+                <search ref="move_deepercave"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Castle" id="move_castle">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You approach the drawbridge of the castle.  Before you an imposing knight clad in complete black stands before you.  You might be able to run past him.  Or you might not.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_drawbridge"/>
+                <search ref="attack_Bknight"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Drawbridge" id="move_drawbridge">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You think you can outrun the knight, after all, he's in heavy black armor right?  You try to dive past the knight, but unfortunately for you, the knight was faster than he looked.  The last thought you have as your head rolls to the ground is, "Why is the world spinning upside down?"</item>
+                    </prompt>
+					<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Bknight" id="attack_Bknight">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            
+                        <item>Steeling yourself, you raise your sword and with a loud yell attack the Black Knight! Your opponent is quick as your swords clang, the sound echoing off the drawbridge. Eyes darting all over as you parry his swipes, you spy a chink in his armor behind his knee.  Risking everything, you purposefully drop your guard.  As the knight thrusts forward, you spin around the blade behind the knight, and land a perfect blow to the weak point.  The knight vanishes in a puff of smoke.  You triumphantly cross the drawbridge and push open the castle doors.  Inside red carpet paints the floor down a long hallway.  The torchlight is dim, and it is hard to see.  You hear a sound above you and look up to see something hurtling toward you!</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_hallway"/>
+                <search ref="attack_fallingthing"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack FallingThing" id="attack_fallingthing">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Fearless, you cleverly hold your sword with both arms up, hoping to skewer whatever is coming down on you.  Turns out it was a giant slab of cieling, designed to kill fearless and clever people like yourself.  Your hopes of winning have been crushed.</item>
+                    </prompt>
+					<goto ref="new"/>
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Hallway" id="move_hallway">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You quickly dive forward and hear and feel a ground shattering "CRASH!"  Looking behind you you find a massive slab of rock has crushed the floor behind you.  That was close!  You carefully walk down the hallway to the large double doors that must lead to the throne room.  You push them open two handed and see 50 yards in front of you, that where the throne should be is a giant sleeping green dragon!</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_Gdragon"/>
+                <search ref="attack_sleepingGdragon"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Sleeping Gdragon" id="attack_sleepingGdragon">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You hold your sword up from 50 yards away and roar at the sleeping dragon before charging.  The dragon opens its eyes takes a good look at you, then snorts a stream of acid out its nose at you.  Turns out 50 yards is a little bit to run.  Oh, and you're not immune to acid.  Journey's end.</item>
+                    </prompt>
+					<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Gdragon" id="move_Gdragon">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Quietly you move closer to the dragon.  As you get closer the imposing size of the beast makes you gulp.  You're now right beside the sleeping beast.  Your sword at the ready, you tense as you spy a side chamber door to your right.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_castledoor"/>
+                <search ref="attack_sleepingGdragon2"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack GDragon2" id="attack_sleepingGdragon2">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You quietly pray as you find a spot in the dragon's belly that looks weak, raise your sword, tremble for just a moment, then plundge it at that spot!  *Tink*  Your toothpick of a blade is deflected.  Stunned, you slowly look up into the eyes of a now very awake, and very angry dragon.  You try to scream as the dragon's mouth snaps you up, but fortunately, death comes to quickly for that.  Try again.</item>
+                    </prompt>
+					<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Castle Door" id="move_castledoor">
+		<input>
+                    <grammar>
+                        <item>move</item>
+						<item>move door</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Deciding your sword is a toothpick against this beast, you sneakily sneak off to the side door.  It appears to be an armory of some sorts.  In the middle of the room is a giant spear in a glass case called "Gligulfia"  You recall this is the name of a legendary spear of legendarianess.  You really don't remember the details, but you think, hey, this could be worth a fortune!  You quickly grab the spear out of the case.  Its pretty heavy.  For a moment you think of the dragon out there.  Should you move out of here, sell this spear and retire?  Or should you try to slay a legendary dragon of legendarianess with a legendary spear of legendarianess for the hell of it?</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_Gdragonfinal"/>
+                <search ref="movetoretire"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move to Retire" id="movetoretire">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Yep, selling the spear netted you enough money to retire in a nice villiage somewhere.  You carefully keep your coins hidden when needed, and live a nice simple and comfortable life without ever having to work a day in your life again.  Not bad for a days work.  Sure, you didn't slay a dragon, but a dragon did not slay you.  Well, this time.  *wink*  Play again for another story!</item>
+                    </prompt>
+					<goto ref="new"/>
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Gdragon Final" id="attack_Gdragonfinal">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You quitely exit the door back into the throne room and creep up to the sleeping green dragon.  As you near, the dragon turns its no longer sleeping head, smiles, and spits out a large stream of acid out you.  "So ends your journey. A goblin stands before you threateningly in a glade."  NO.  NOT THIS TIME.  The spear in your hand lights up with the brightness of a thousand suns, dissinigrating the acid in thin air.  A surge of power flows into your veins!  Your muscles flex and grow larger with power.  You feel yourself growing taller.  At ten feet tall you stop growing, but the yearning, the unstoppable power and desire to kill this dragon do not.  With a roar that shatters the stained glass windows around you, you charge straight at the dragon, who's lizardly expression could only be described as one of surprise.  You piearce its belly with the spear and it explodes in a burst of light!  A large throne lies empty before you.  You set your ten foot frame of power on the thone, and realize that all you survey from here is now yours.  People flock from all over to the once abandoned castle, and you rule it with awesomeness.  Try again for another story! </item>
+                    </prompt>
+					<goto ref="new"/>
+			</output>
+			</input>
+		</folder>
+		</folder>
+		<folder label="Attack Bee" id="attack_bee">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You don't like bees very much.  Oh, this was a giant bee by the way.  As you swing your sword at it, it flies up out of range, then stings you in the chest.  Horror is quickly given way to sleep as the bee's unique poisen puts you to sleep.  The bee gently grabs you, and you feel yourself being whisked away somewhere.  You awake slowly with the sound of wind whistling and whipping around you.  Squinting from the bright sun, you get your bearings and realize you're up who knows how high in a giant bird's nest!  The remains of a bee carcas nearby tell the tale of a hunter becoming the hunted after you the hunter had become hunted.  Or something like that.  In the distance you see a gigantic raven swooping down toward the nest!</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_nest"/>
+                <search ref="attack_bird"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Nest" id="move_nest">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Nope.  You're not getting eaten by a bird.  You would rather die by almost anything then get eaten by a bird.  You get your wish as you jump out of the nest and find a good 300 foot drop below.</item>
+                    </prompt>
+					<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Bird" id="attack_bird">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You brace yourself for the bird as it lands in the nest.  Not giving it time to attack, you stab your sword in its side! You try to pull your sword out, but its stuck. Startled, the bird quickly hops up and frantically flaps its wings.  Holding on for dear life, the bird flutters, straining against your extra weight and its wound.  Slowly, you decend to the ground.  As you land, you're jolted away from the bird and collide roughly with the ground.  Your sword still sticking out of the bird, it eyes you angrily.  A forest surrounds you.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="move_forest"/>
+                <search ref="attack_woundedbird"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Wounded Bird" id="attack_woundedbird">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Its going to be tricky to that sword back.  But you like that sword.  You bought it from that nice blacksmith back in town who liked to curse a lot.  You charge the surprised bird and uppercut its abdomen with the fury of a guy who just woke up from bee poisen and held onto a sword for dear life for several seconds.  With the mighty force of a tired weakling, you peck the bird as the bird pecks you back.  I guess you like feeding the birds.</item>
+                    </prompt>
+					<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Forest" id="move_forest">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Tired as you are, you decide your best bet is to hide out in the forest.  As you run head long into the trees, you hear the hop stomp of the giant raven behind you.  Frantically you scramble over dead leaves, twigs and logs as you hear the crash of trees behind you and the piercing caw of the bird.  Soon the forest thickens and the bird behind you slows.  You could try doubling back and attack it to get your sword back, or move on deeper into the woods.</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_crow"/>
+                <search ref="move_deeperforest"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move Deeper Forest" id="move_deeperforest">
+		<input>
+                    <grammar>
+                        <item>move</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Leaving the bird behind, you decide to go deeper into the forest.  Suddenly, something from a branch above you grabs you!  You struggle, flailing your arms about, but your puny human hands are nothing without a tool.  You lose consciousness, and then your life.</item>
+                    </prompt>
+				<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Raven" id="attack_crow">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>Quietly you sneak around behind the confused bird and notice its struggling against some vines.  You creep up behind its back, grab the sword and jiggle it fiercely.  With a cry from the Raven, it comes free in your hands!  No need to stay, you run away quickly.  Eventually, you find what appears to be a hut alone in the woods.  As you carefully approach, an incredibly attractive person emerges.  Your breath is taken aback by how lovely they are.  They speak.  "Traveller, you are in a strange land far from other people, much like myself.  Can I invite you in for some food and drink?</item>
+                    </prompt>
+					<getUserInput>
+				<search ref="attack_woodsperson"/>
+                <search ref="move_in"/>    
+					</getUserInput>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Attack Woodsperson" id="attack_woodsperson">
+		<input>
+                    <grammar>
+                        <item>attack</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item>You don't trust good looking attractive people, so you attack.  Taken by surprise, you vanquish the lovely person with one slice.  You look at the blood on your hands, the dying person at your feet, and give up adventuring forever.</item>
+                    </prompt>
+				<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Move In" id="move_in">
+		<input>
+                    <grammar>
+                        <item>You decide to take them up on their offer.  Your host is lovely.  Charming, witty, and wonderful.  They seem to find you equally amazing as you tell the tales of your adventures.  The day ends and you are asked to spend the night.  You oblige.  And every night after.  You have found the person of your dreams, and live happily ever after.</item>
+                    </grammar>
+            <output>
+				    <prompt selectionType="RANDOM">
+                            <item></item>
+                    </prompt>
+				<goto ref="new"/>	
+			</output>
+			</input>
+		</folder>
+		<folder label="Concepts">
+            <concept>
+                <grammar>
+                    <item>move</item>
+                    <item>run</item>
+                    <item>dash</item>
+                    <item>go</item>
+                    <item>I move</item>
+                </grammar>
+            </concept>
+			<concept>
+                <grammar>
+                    <item>attack</item>
+                    <item>slice</item>
+                    <item>punch</item>
+                    <item>hit</item>
+                    <item>kick ass</item>
+					<item>stab</item>
+					<item>thwack</item>
+					<item>smack</item>
+                </grammar>
+            </concept>
+		</folder>
+	</flow>
+</dialog>	  
